@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How to Buy $NXR — NEXORA</title>
+<meta name="description" content="Step-by-step guide to buy $NXR token on Base Network using Uniswap."/>
+<link rel="icon" type="image/png" href="assets/nexora_icon.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--blue:#0052FF;--cyan:#00D4FF;--bg:#050810;--surface:#0b1120;--surface2:#0f1829;--border:rgba(0,82,255,0.18);--text:#e8edf8;--muted:#6b7fa3;--green:#00e676;--red:#ff5252}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace;overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,82,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,82,255,0.035) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:68px;background:rgba(5,8,16,0.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:5px;color:#fff;display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.logo-dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;animation:blink 2s ease-in-out infinite}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.btn-back{background:rgba(0,82,255,0.12);border:1px solid var(--border);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;padding:9px 20px;cursor:pointer;transition:background .2s,color .2s;text-decoration:none}
+.btn-back:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+.page-wrapper{position:relative;z-index:1;padding:100px 56px 60px;max-width:900px;margin:0 auto}
+.page-label{font-size:10px;letter-spacing:4px;color:var(--blue);text-transform:uppercase;margin-bottom:14px}
+.page-title{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:800;color:#fff;line-height:1.08;margin-bottom:10px}
+.page-sub{color:var(--muted);font-size:13px;line-height:1.8;max-width:520px;margin-bottom:48px}
+
+/* TIME ESTIMATE */
+.time-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,82,255,0.1);border:1px solid rgba(0,82,255,0.3);padding:8px 20px;font-size:11px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:40px}
+
+/* STEP CARDS */
+.step{background:var(--surface);border:1px solid var(--border);margin-bottom:2px;overflow:hidden;transition:border-color .3s}
+.step:hover{border-color:rgba(0,82,255,0.35)}
+.step-header{display:flex;align-items:flex-start;gap:24px;padding:36px 36px 0}
+.step-num{font-family:'Syne',sans-serif;font-size:72px;font-weight:800;color:rgba(0,82,255,0.15);line-height:1;letter-spacing:-3px;flex-shrink:0}
+.step-info{flex:1}
+.step-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.step-est{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.step-body{padding:0 36px 36px;padding-left:calc(36px + 80px)}
+.step-body p{font-size:12px;line-height:1.9;color:var(--muted);margin-bottom:12px}
+.step-body p strong{color:var(--text)}
+
+/* SUB-STEPS */
+.sub-steps{list-style:none;margin:16px 0}
+.sub-steps li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px;line-height:1.7;color:var(--muted)}
+.sub-steps li:last-child{border-bottom:none}
+.sub-step-num{background:rgba(0,82,255,0.12);color:var(--cyan);font-size:10px;font-weight:500;min-width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;margin-top:2px}
+
+/* LINK CARDS */
+.link-card{display:flex;align-items:center;gap:16px;background:var(--surface2);border:1px solid var(--border);padding:16px 20px;margin:12px 0;text-decoration:none;transition:border-color .2s,background .2s}
+.link-card:hover{border-color:var(--blue);background:rgba(0,82,255,0.06)}
+.link-icon{font-size:24px;flex-shrink:0}
+.link-info{flex:1}
+.link-name{font-size:12px;color:#fff;font-weight:500;margin-bottom:3px}
+.link-url{font-size:10px;color:var(--cyan);letter-spacing:1px}
+.link-arrow{color:var(--muted);font-size:14px}
+
+/* WARNING BOX */
+.warning-box{background:rgba(255,82,82,0.06);border:1px solid rgba(255,82,82,0.2);padding:20px 24px;margin:20px 0;display:flex;gap:14px;align-items:flex-start}
+.warning-box .icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.warning-box p{font-size:11px;line-height:1.8;color:var(--muted)}
+.warning-box p strong{color:var(--red)}
+
+/* CONTRACT BOX */
+.contract-box{background:var(--surface);border:1px solid var(--border);padding:24px 28px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.contract-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.contract-addr{font-size:13px;color:var(--cyan);word-break:break-all;font-family:'IBM Plex Mono',monospace}
+.copy-btn{background:rgba(0,82,255,0.12);border:1px solid var(--border);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;padding:10px 22px;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap;flex-shrink:0}
+.copy-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* CTA */
+.buy-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;text-decoration:none;padding:16px 36px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);transition:background .2s,transform .2s;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--cyan);color:#000;transform:translateY(-2px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);text-decoration:none;padding:16px 36px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--border);transition:border-color .2s,color .2s;cursor:pointer}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* FAQ */
+.faq-section{margin-top:56px}
+.faq-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.faq-item{border-bottom:1px solid rgba(255,255,255,0.04);overflow:hidden}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 0;cursor:pointer;font-size:13px;color:var(--text);transition:color .2s;user-select:none}
+.faq-q:hover{color:var(--cyan)}
+.faq-q .arrow{color:var(--blue);font-size:14px;transition:transform .3s}
+.faq-item.open .arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:18px}
+.faq-a p{font-size:12px;line-height:1.8;color:var(--muted)}
+
+/* FOOTER */
+.tool-footer{position:relative;z-index:1;text-align:center;padding:40px 56px;border-top:1px solid var(--border);margin-top:60px}
+.tool-footer p{font-size:11px;color:var(--muted);opacity:.5}
+
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeUp .6s ease both}
+.fade-in-d1{animation:fadeUp .6s .1s ease both}
+.fade-in-d2{animation:fadeUp .6s .2s ease both}
+.fade-in-d3{animation:fadeUp .6s .3s ease both}
+
+@media(max-width:820px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .page-wrapper{padding:100px 20px 40px}
+  .step-header{flex-direction:column;gap:8px;padding:24px 20px 0}
+  .step-num{font-size:48px}
+  .step-body{padding:0 20px 28px;padding-left:20px}
+  .contract-box{flex-direction:column;align-items:flex-start}
+  .copy-btn{width:100%;text-align:center}
+  .buy-cta{flex-direction:column}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center;clip-path:none}
+  .tool-footer{padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="nexora-landing.html" class="logo"><img src="assets/nexora_icon.png" alt="Nexora" class="logo-icon"/>NEXORA</a>
+  <ul class="nav-links">
+    <li><a href="gas-tracker.html">Gas Tracker</a></li>
+    <li><a href="wallet-analyzer.html">Wallet Analyzer</a></li>
+    <li><a href="token-screener.html">Token Screener</a></li>
+    <li><a href="how-to-buy.html" class="active">How to Buy</a></li>
+  </ul>
+  <a href="nexora-landing.html" class="btn-back">← Back to Home</a>
+</nav>
+
+<div class="page-wrapper">
+  <div class="page-label fade-in">// Get Started</div>
+  <h1 class="page-title fade-in-d1">How to Buy <span style="color:var(--blue)">$NXR</span></h1>
+  <p class="page-sub fade-in-d2">A complete step-by-step guide to purchasing $NXR token on Base Network. Takes less than 5 minutes if you already have a wallet.</p>
+  <div class="time-badge fade-in-d2">⏱ &nbsp;Estimated Time: ~5 Minutes</div>
+
+  <!-- WARNING -->
+  <div class="warning-box fade-in-d3">
+    <div class="icon">⚠️</div>
+    <p><strong>Important:</strong> Always verify the official contract address before swapping. Never trust links from unofficial sources. The only official $NXR contract address is listed below. Always do your own research (DYOR) before investing in any cryptocurrency.</p>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step fade-in-d3">
+    <div class="step-header">
+      <div class="step-num">01</div>
+      <div class="step-info">
+        <div class="step-title">Set Up Your Wallet</div>
+        <div class="step-est">⏱ 2 minutes — one-time setup</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>You'll need a Web3 wallet that supports Base Network. We recommend <strong>MetaMask</strong> or <strong>Coinbase Wallet</strong> — both are free and easy to set up.</p>
+      <ul class="sub-steps">
+        <li><span class="sub-step-num">a</span>Download MetaMask from <strong>metamask.io</strong> (browser extension or mobile app) or Coinbase Wallet from your app store</li>
+        <li><span class="sub-step-num">b</span>Create a new wallet and <strong>securely back up your seed phrase</strong> — write it down on paper, never share it with anyone</li>
+        <li><span class="sub-step-num">c</span>Add Base Network to your wallet using <strong>chainlist.org</strong> — search for "Base" and click "Add to MetaMask"</li>
+      </ul>
+      <a href="https://metamask.io" target="_blank" class="link-card">
+        <div class="link-icon">🦊</div>
+        <div class="link-info">
+          <div class="link-name">Download MetaMask</div>
+          <div class="link-url">metamask.io</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+      <a href="https://chainlist.org/?search=base" target="_blank" class="link-card">
+        <div class="link-icon">🔗</div>
+        <div class="link-info">
+          <div class="link-name">Add Base Network via Chainlist</div>
+          <div class="link-url">chainlist.org</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">02</div>
+      <div class="step-info">
+        <div class="step-title">Get ETH on Base Network</div>
+        <div class="step-est">⏱ 1–3 minutes</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>You need ETH on Base Network to swap for $NXR (and to pay small gas fees). There are two ways to get ETH on Base:</p>
+      <ul class="sub-steps">
+        <li><span class="sub-step-num">a</span><strong>Option A — Bridge from Ethereum:</strong> Use the official Base Bridge to transfer ETH from Ethereum mainnet to Base. Takes ~2 minutes.</li>
+        <li><span class="sub-step-num">b</span><strong>Option B — Buy directly on Base:</strong> Some exchanges (Coinbase, Binance) allow you to withdraw ETH directly to Base Network. Check withdrawal options.</li>
+        <li><span class="sub-step-num">c</span><strong>Option C — Third-party bridges:</strong> Use Orbiter Finance, Stargate, or Across Protocol for fast, cheap bridging from other L2s like Arbitrum or Optimism.</li>
+      </ul>
+      <a href="https://bridge.base.org" target="_blank" class="link-card">
+        <div class="link-icon">🌉</div>
+        <div class="link-info">
+          <div class="link-name">Official Base Bridge</div>
+          <div class="link-url">bridge.base.org</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">03</div>
+      <div class="step-info">
+        <div class="step-title">Swap ETH → $NXR on Uniswap</div>
+        <div class="step-est">⏱ 1 minute</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>Now you're ready to buy $NXR. Use Uniswap (the largest DEX on Base) to swap your ETH for $NXR tokens.</p>
+      <ul class="sub-steps">
+        <li><span class="sub-step-num">a</span>Go to <strong>app.uniswap.org</strong> and connect your wallet</li>
+        <li><span class="sub-step-num">b</span>Make sure you're on <strong>Base Network</strong> (check the network selector in the top right)</li>
+        <li><span class="sub-step-num">c</span>Set the "From" token to <strong>ETH</strong> and the "To" token to <strong>$NXR</strong></li>
+        <li><span class="sub-step-num">d</span>Paste the official $NXR contract address (below) to import the token</li>
+        <li><span class="sub-step-num">e</span>Enter the amount of ETH you want to swap, review the details, and click <strong>"Swap"</strong></li>
+        <li><span class="sub-step-num">f</span>Confirm the transaction in your wallet — done! 🎉</li>
+      </ul>
+      <a href="https://app.uniswap.org" target="_blank" class="link-card">
+        <div class="link-icon">🦄</div>
+        <div class="link-info">
+          <div class="link-name">Open Uniswap</div>
+          <div class="link-url">app.uniswap.org</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">04</div>
+      <div class="step-info">
+        <div class="step-title">Add $NXR to Your Wallet & Hold</div>
+        <div class="step-est">⏱ 30 seconds</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>After the swap is complete, you'll have $NXR tokens in your wallet. To see them in your wallet interface:</p>
+      <ul class="sub-steps">
+        <li><span class="sub-step-num">a</span>In MetaMask, scroll down and click <strong>"Import Tokens"</strong></li>
+        <li><span class="sub-step-num">b</span>Paste the $NXR contract address and the token should auto-fill (Name: Nexora, Symbol: NXR, Decimals: 18)</li>
+        <li><span class="sub-step-num">c</span>Click <strong>"Add Custom Token"</strong> and confirm — your $NXR balance will now be visible!</li>
+      </ul>
+      <p>🎉 <strong>Congratulations!</strong> You now hold $NXR. Start exploring the <a href="gas-tracker.html" style="color:var(--cyan)">Nexora tools</a> and join our community!</p>
+    </div>
+  </div>
+
+  <!-- CONTRACT ADDRESS -->
+  <div class="contract-box">
+    <div>
+      <div class="contract-label">Official Contract Address — Base Network</div>
+      <div class="contract-addr" id="caddr">0x0000000000000000000000000000000000000000</div>
+    </div>
+    <button class="copy-btn" onclick="copyAddr()">Copy Address</button>
+  </div>
+
+  <!-- CTA -->
+  <div class="buy-cta">
+    <a href="https://app.uniswap.org" target="_blank" class="btn-primary">🔵 Buy on Uniswap</a>
+    <a href="https://dexscreener.com" target="_blank" class="btn-ghost">📈 View on Dexscreener</a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What is slippage and how much should I set? <span class="arrow">▼</span></div>
+      <div class="faq-a"><p>Slippage is the maximum price difference you'll accept between when you submit a swap and when it executes. For $NXR (0% tax), a slippage of <strong>0.5% - 1%</strong> is usually sufficient. If the swap fails, try increasing to 2-3%.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">How much are gas fees on Base? <span class="arrow">▼</span></div>
+      <div class="faq-a"><p>Base is an Ethereum Layer 2, so gas fees are extremely low — typically <strong>less than $0.01</strong> per transaction. You can check current gas prices on our <a href="gas-tracker.html" style="color:var(--cyan)">Gas Tracker</a> tool.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Is there a buy or sell tax on $NXR? <span class="arrow">▼</span></div>
+      <div class="faq-a"><p>No. $NXR has <strong>0% buy tax and 0% sell tax</strong>. What you see is what you get — no hidden fees or token deductions on any transaction.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Can I buy $NXR on a centralized exchange (CEX)? <span class="arrow">▼</span></div>
+      <div class="faq-a"><p>Currently, $NXR is only available on decentralized exchanges (DEX) via Uniswap on Base Network. CEX listings will be announced via our official channels.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">My swap is failing — what should I do? <span class="arrow">▼</span></div>
+      <div class="faq-a"><p>Try increasing slippage to 2-3%. Make sure you have enough ETH for gas fees (keep at least 0.001 ETH aside). If using MetaMask, try clearing activity data in Settings → Advanced → Clear Activity Tab Data.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-footer">
+  <p>© 2025 Nexora. This guide is for educational purposes only. Always DYOR.</p>
+</div>
+
+<script>
+function copyAddr() {
+  navigator.clipboard.writeText(document.getElementById('caddr').textContent).catch(() => {});
+  const btn = document.querySelector('.copy-btn');
+  btn.textContent = '✅ Copied!';
+  setTimeout(() => btn.textContent = 'Copy Address', 2000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Whitepaper — NEXORA</title>
+<meta name="description" content="Nexora Whitepaper v1.0 — The all-in-one multi-tools platform built natively on Base Network."/>
+<link rel="icon" type="image/png" href="assets/nexora_icon.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--blue:#0052FF;--cyan:#00D4FF;--bg:#050810;--surface:#0b1120;--surface2:#0f1829;--border:rgba(0,82,255,0.18);--text:#e8edf8;--muted:#6b7fa3;--green:#00e676;--red:#ff5252}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace;overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,82,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,82,255,0.035) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:68px;background:rgba(5,8,16,0.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:5px;color:#fff;display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.logo-dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;animation:blink 2s ease-in-out infinite}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.btn-back{background:rgba(0,82,255,0.12);border:1px solid var(--border);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;padding:9px 20px;cursor:pointer;transition:background .2s,color .2s;text-decoration:none}
+.btn-back:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+.page-wrapper{position:relative;z-index:1;padding:100px 56px 60px;max-width:900px;margin:0 auto}
+
+/* HERO */
+.wp-hero{text-align:center;margin-bottom:64px}
+.wp-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,82,255,0.1);border:1px solid rgba(0,82,255,0.3);padding:6px 18px;font-size:10px;letter-spacing:2.5px;color:var(--cyan);text-transform:uppercase;margin-bottom:24px}
+.wp-title{font-family:'Syne',sans-serif;font-size:clamp(36px,6vw,64px);font-weight:800;color:#fff;line-height:1;margin-bottom:16px}
+.wp-title .accent{color:var(--blue)}
+.wp-version{font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.wp-date{font-size:11px;color:var(--muted);opacity:.6}
+
+/* TOC */
+.toc{background:var(--surface);border:1px solid var(--border);padding:32px 36px;margin-bottom:56px}
+.toc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);letter-spacing:2px;text-transform:uppercase}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0}
+.toc-list a{display:flex;justify-content:space-between;align-items:center;padding:12px 0;font-size:12px;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.03);transition:color .2s,padding-left .2s}
+.toc-list a:hover{color:var(--cyan);padding-left:8px}
+.toc-list a span{color:var(--blue);font-size:11px}
+
+/* SECTIONS */
+.wp-section{margin-bottom:56px}
+.wp-section-num{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:rgba(0,82,255,0.12);line-height:1;margin-bottom:8px}
+.wp-section h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.wp-section p{font-size:13px;line-height:2;color:var(--muted);margin-bottom:16px}
+.wp-section p strong{color:var(--text)}
+.wp-section ul{list-style:none;margin:16px 0 16px 0}
+.wp-section ul li{font-size:12px;line-height:1.8;color:var(--muted);padding:8px 0 8px 20px;border-bottom:1px solid rgba(255,255,255,0.03);position:relative}
+.wp-section ul li::before{content:'▸';color:var(--blue);position:absolute;left:0}
+
+/* INFO BOXES */
+.wp-box{background:var(--surface);border:1px solid var(--border);padding:28px 32px;margin:24px 0}
+.wp-box h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.wp-box-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px}
+.wp-box-row:last-child{border-bottom:none}
+.wp-box-row .label{color:var(--muted)}
+.wp-box-row .val{color:#fff;font-weight:500}
+.wp-box-row .val em{color:var(--cyan);font-style:normal}
+
+/* ALLOCATION BARS */
+.alloc-item{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.alloc-item:last-child{border-bottom:none}
+.alloc-label{font-size:11px;color:var(--muted);min-width:120px}
+.alloc-bar-wrap{flex:1;height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.alloc-bar{height:100%;border-radius:2px}
+.alloc-pct{font-size:12px;color:var(--cyan);min-width:36px;text-align:right}
+
+/* ROADMAP */
+.roadmap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);margin:24px 0}
+.roadmap-card{background:var(--surface);padding:28px 24px}
+.roadmap-phase{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.roadmap-card h5{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:12px}
+.roadmap-card ul{list-style:none;margin:0}
+.roadmap-card ul li{font-size:11px;color:var(--muted);padding:5px 0 5px 16px;position:relative}
+.roadmap-card ul li::before{content:'✓';color:var(--green);position:absolute;left:0;font-size:10px}
+.roadmap-card ul li.pending::before{content:'○';color:var(--muted)}
+
+/* FOOTER */
+.tool-footer{position:relative;z-index:1;text-align:center;padding:40px 56px;border-top:1px solid var(--border);margin-top:60px}
+.tool-footer p{font-size:11px;color:var(--muted);opacity:.5}
+
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeUp .6s ease both}
+.fade-in-d1{animation:fadeUp .6s .1s ease both}
+.fade-in-d2{animation:fadeUp .6s .2s ease both}
+
+@media(max-width:820px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .page-wrapper{padding:100px 20px 40px}
+  .toc{padding:24px 20px}
+  .wp-box{padding:20px 16px}
+  .roadmap-grid{grid-template-columns:1fr}
+  .tool-footer{padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="nexora-landing.html" class="logo"><img src="assets/nexora_icon.png" alt="Nexora" class="logo-icon"/>NEXORA</a>
+  <ul class="nav-links">
+    <li><a href="gas-tracker.html">Gas Tracker</a></li>
+    <li><a href="wallet-analyzer.html">Wallet Analyzer</a></li>
+    <li><a href="token-screener.html">Token Screener</a></li>
+    <li><a href="whitepaper.html" class="active">Whitepaper</a></li>
+  </ul>
+  <a href="nexora-landing.html" class="btn-back">← Back to Home</a>
+</nav>
+
+<div class="page-wrapper">
+
+  <!-- HERO -->
+  <div class="wp-hero fade-in">
+    <div class="wp-badge">● &nbsp;Official Document</div>
+    <h1 class="wp-title">NEX<span class="accent">ORA</span></h1>
+    <div class="wp-version">Whitepaper v1.0</div>
+    <div class="wp-date">Last Updated: April 2025</div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc fade-in-d1">
+    <div class="toc-title">Table of Contents</div>
+    <ul class="toc-list">
+      <li><a href="#abstract"><span>01</span> Abstract</a></li>
+      <li><a href="#problem"><span>02</span> Problem Statement</a></li>
+      <li><a href="#solution"><span>03</span> The Nexora Solution</a></li>
+      <li><a href="#tools"><span>04</span> Tools & Utilities</a></li>
+      <li><a href="#tokenomics"><span>05</span> Tokenomics</a></li>
+      <li><a href="#roadmap"><span>06</span> Roadmap</a></li>
+      <li><a href="#security"><span>07</span> Security & Transparency</a></li>
+      <li><a href="#team"><span>08</span> Team & Community</a></li>
+      <li><a href="#disclaimer"><span>09</span> Disclaimer</a></li>
+    </ul>
+  </div>
+
+  <!-- ABSTRACT -->
+  <div class="wp-section fade-in-d2" id="abstract">
+    <div class="wp-section-num">01</div>
+    <h2>Abstract</h2>
+    <p><strong>Nexora</strong> is an all-in-one multi-tools platform built natively on <strong>Base Network</strong> (Coinbase's Layer 2 on Ethereum). It provides traders, builders, and everyday users with essential on-chain utilities—all accessible through a single ecosystem powered by the <strong>$NXR</strong> token.</p>
+    <p>The platform combines four core utilities: <strong>Gas Tracking</strong>, <strong>Wallet Analytics</strong>, <strong>Token Screening</strong>, and <strong>Yield Calculation</strong>—eliminating the need to jump between multiple fragmented tools and platforms.</p>
+    <p>With zero buy/sell tax, a locked liquidity pool, and a transparent tokenomics structure, Nexora is designed for long-term sustainability and community-driven growth on the Base ecosystem.</p>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="wp-section" id="problem">
+    <div class="wp-section-num">02</div>
+    <h2>Problem Statement</h2>
+    <p>The current DeFi landscape on Base (and L2s in general) suffers from fragmentation. Users must navigate between dozens of separate tools and websites to perform basic operations:</p>
+    <ul>
+      <li><strong>Gas monitoring</strong> requires visiting separate gas tracker websites</li>
+      <li><strong>Wallet analysis</strong> is scattered across block explorers with limited UX</li>
+      <li><strong>Token discovery</strong> depends on unreliable social channels and delayed aggregators</li>
+      <li><strong>Yield estimation</strong> requires manual calculations or spreadsheet models</li>
+      <li><strong>No unified platform</strong> exists that combines these tools into a cohesive experience</li>
+    </ul>
+    <p>This fragmentation wastes time, increases the risk of errors, and creates barriers for new users entering the Base ecosystem. Nexora solves this by bringing everything together under one roof.</p>
+  </div>
+
+  <!-- SOLUTION -->
+  <div class="wp-section" id="solution">
+    <div class="wp-section-num">03</div>
+    <h2>The Nexora Solution</h2>
+    <p>Nexora provides a <strong>unified multi-tools platform</strong> that gives users everything they need to operate efficiently on Base Network. The platform is designed with three core principles:</p>
+    <ul>
+      <li><strong>Accessibility</strong> — All tools are free to use. No wallet connection required for basic features.</li>
+      <li><strong>Accuracy</strong> — Real-time data fetched directly from Base Network RPC and verified aggregators.</li>
+      <li><strong>Simplicity</strong> — Clean, intuitive interfaces that work on desktop and mobile devices.</li>
+    </ul>
+    <p>$NXR token holders unlock <strong>premium features</strong> including deeper analytics, custom alerts, portfolio tracking, and priority access to new tools as they launch.</p>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="wp-section" id="tools">
+    <div class="wp-section-num">04</div>
+    <h2>Tools & Utilities</h2>
+
+    <div class="wp-box">
+      <h4>⛽ Gas Tracker</h4>
+      <p style="font-size:12px;color:var(--muted);line-height:1.8;margin:0">Monitor Base Network gas prices in real-time with 12-second refresh intervals. View low, standard, and fast priority fees. Historical gas price charts help identify optimal transaction windows. Estimated USD cost calculations for common operations including transfers, swaps, and contract interactions.</p>
+    </div>
+
+    <div class="wp-box">
+      <h4>🔍 Wallet Analyzer</h4>
+      <p style="font-size:12px;color:var(--muted);line-height:1.8;margin:0">Deep-dive into any Base wallet address. View ETH balance, token holdings with USD valuations, complete transaction history with type categorization (sends, receives, swaps), and portfolio composition breakdown. Premium users get access to PnL tracking and whale alert notifications.</p>
+    </div>
+
+    <div class="wp-box">
+      <h4>📊 Token Screener</h4>
+      <p style="font-size:12px;color:var(--muted);line-height:1.8;margin:0">Discover trending and newly launched tokens on Base. Real-time data from DexScreener with filtering by volume, liquidity, market cap, and token age. Safety scoring system flags potential risks. Sparkline charts provide quick visual trend analysis. Auto-refreshes every 30 seconds.</p>
+    </div>
+
+    <div class="wp-box">
+      <h4>💰 Yield Calculator — Coming Soon</h4>
+      <p style="font-size:12px;color:var(--muted);line-height:1.8;margin:0">Calculate potential DeFi returns across Base protocols. Input your capital amount and APY to see projected daily, weekly, monthly, and yearly returns. Compare yields across multiple protocols including Aerodrome, Moonwell, Seamless, and Extra Finance.</p>
+    </div>
+  </div>
+
+  <!-- TOKENOMICS -->
+  <div class="wp-section" id="tokenomics">
+    <div class="wp-section-num">05</div>
+    <h2>Tokenomics</h2>
+    <p>The $NXR token is designed with a fair, transparent structure optimized for long-term ecosystem sustainability. There are no hidden allocations, no team dumps, and no buy/sell taxes.</p>
+
+    <div class="wp-box">
+      <h4>Token Details</h4>
+      <div class="wp-box-row"><span class="label">Token Name</span><span class="val">Nexora</span></div>
+      <div class="wp-box-row"><span class="label">Symbol</span><span class="val">$NXR</span></div>
+      <div class="wp-box-row"><span class="label">Network</span><span class="val">Base <em>(L2 Ethereum)</em></span></div>
+      <div class="wp-box-row"><span class="label">Standard</span><span class="val">ERC-20</span></div>
+      <div class="wp-box-row"><span class="label">Total Supply</span><span class="val">1,000,000,000</span></div>
+      <div class="wp-box-row"><span class="label">Buy / Sell Tax</span><span class="val"><em>0% / 0%</em></span></div>
+      <div class="wp-box-row"><span class="label">Mint Function</span><span class="val">Disabled (Renounced)</span></div>
+      <div class="wp-box-row"><span class="label">Liquidity Lock</span><span class="val"><em>12 Months</em></span></div>
+    </div>
+
+    <div class="wp-box">
+      <h4>Allocation Breakdown</h4>
+      <div class="alloc-item"><span class="alloc-label">Liquidity Pool</span><div class="alloc-bar-wrap"><div class="alloc-bar" style="width:50%;background:var(--blue)"></div></div><span class="alloc-pct">50%</span></div>
+      <div class="alloc-item"><span class="alloc-label">Community</span><div class="alloc-bar-wrap"><div class="alloc-bar" style="width:20%;background:#0099ee"></div></div><span class="alloc-pct">20%</span></div>
+      <div class="alloc-item"><span class="alloc-label">Team (Vested)</span><div class="alloc-bar-wrap"><div class="alloc-bar" style="width:15%;background:var(--cyan)"></div></div><span class="alloc-pct">15%</span></div>
+      <div class="alloc-item"><span class="alloc-label">Marketing</span><div class="alloc-bar-wrap"><div class="alloc-bar" style="width:10%;background:#0077cc"></div></div><span class="alloc-pct">10%</span></div>
+      <div class="alloc-item"><span class="alloc-label">Reserve</span><div class="alloc-bar-wrap"><div class="alloc-bar" style="width:5%;background:#004499"></div></div><span class="alloc-pct">5%</span></div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="wp-section" id="roadmap">
+    <div class="wp-section-num">06</div>
+    <h2>Roadmap</h2>
+    <p>Nexora follows a phased development approach, prioritizing core utility delivery before expanding into advanced features and cross-chain capabilities.</p>
+
+    <div class="roadmap-grid">
+      <div class="roadmap-card">
+        <div class="roadmap-phase">Phase 1 — Foundation</div>
+        <h5>Q1 2025</h5>
+        <ul>
+          <li>Token launch on Base Network</li>
+          <li>Landing page & branding</li>
+          <li>Gas Tracker v1.0 launch</li>
+          <li>Wallet Analyzer v1.0 launch</li>
+          <li>Token Screener v1.0 launch</li>
+        </ul>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase">Phase 2 — Expansion</div>
+        <h5>Q2 2025</h5>
+        <ul>
+          <li>Yield Calculator launch</li>
+          <li>Premium features for $NXR holders</li>
+          <li class="pending">Portfolio tracker dashboard</li>
+          <li class="pending">Whale alert notifications</li>
+          <li class="pending">Exchange listings</li>
+        </ul>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase">Phase 3 — Growth</div>
+        <h5>Q3 2025</h5>
+        <ul>
+          <li class="pending">Mobile-optimized PWA</li>
+          <li class="pending">API access for developers</li>
+          <li class="pending">Advanced charting tools</li>
+          <li class="pending">Community governance proposals</li>
+          <li class="pending">Strategic partnerships</li>
+        </ul>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase">Phase 4 — Ecosystem</div>
+        <h5>Q4 2025</h5>
+        <ul>
+          <li class="pending">Multi-chain support (Optimism, Arbitrum)</li>
+          <li class="pending">Nexora SDK for builders</li>
+          <li class="pending">DAO governance launch</li>
+          <li class="pending">Revenue sharing for holders</li>
+          <li class="pending">Nexora Pro subscription tier</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="wp-section" id="security">
+    <div class="wp-section-num">07</div>
+    <h2>Security & Transparency</h2>
+    <p>Security is foundational to Nexora. The following measures ensure user safety and project integrity:</p>
+    <ul>
+      <li><strong>Liquidity Locked</strong> — LP tokens are locked for 12 months via a trusted locking provider</li>
+      <li><strong>No Mint Function</strong> — The contract's mint function is permanently disabled; supply is fixed</li>
+      <li><strong>Zero Tax</strong> — 0% buy and sell tax means no hidden fees or token extraction</li>
+      <li><strong>Open Source Tools</strong> — All tool interfaces use publicly verifiable data sources</li>
+      <li><strong>Contract Verified</strong> — Smart contract is verified on BaseScan for full transparency</li>
+      <li><strong>No Admin Keys</strong> — Contract ownership renounced after deployment</li>
+    </ul>
+  </div>
+
+  <!-- TEAM -->
+  <div class="wp-section" id="team">
+    <div class="wp-section-num">08</div>
+    <h2>Team & Community</h2>
+    <p>Nexora is built by a team of DeFi enthusiasts and Base ecosystem contributors. The project prioritizes <strong>community-first development</strong>, with features and tool priorities driven by user feedback.</p>
+    <p>Join the Nexora community across our official channels:</p>
+    <ul>
+      <li><strong><a href="https://x.com/NexoraBase" target="_blank" style="color:var(--cyan);text-decoration:none">Twitter / X</a></strong> — Follow <a href="https://x.com/NexoraBase" target="_blank" style="color:var(--cyan);text-decoration:none">@NexoraBase</a> for updates, announcements, and alpha</li>
+      <li><strong>Telegram</strong> — Join the community group for discussions and support</li>
+      <li><strong>GitHub</strong> — Open-source contributions and bug reports welcome</li>
+    </ul>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="wp-section" id="disclaimer">
+    <div class="wp-section-num">09</div>
+    <h2>Disclaimer</h2>
+    <p>This whitepaper is provided for informational purposes only and does not constitute financial, investment, or legal advice. <strong>$NXR is a utility token</strong> designed to provide access to platform features within the Nexora ecosystem.</p>
+    <p>Cryptocurrency investments carry significant risk. Token prices can be highly volatile, and past performance is not indicative of future results. Always conduct your own research (DYOR) and consult with a qualified financial advisor before making investment decisions.</p>
+    <p>The Nexora team makes no guarantees regarding token price appreciation, exchange listings, or future feature availability. The roadmap is subject to change based on market conditions, technical constraints, and community feedback.</p>
+  </div>
+
+</div>
+
+<div class="tool-footer">
+  <p>© 2025 Nexora. Whitepaper v1.0 — Built on Base Network.</p>
+</div>
+
+</body>
+</html>
