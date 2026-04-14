@@ -498,33 +498,6 @@ h1 .accent { color: var(--blue); }
   margin-bottom: 10px;
 }
 .step-desc { font-size: 11px; line-height: 1.85; color: var(--muted); }
-.contract-box {
-  margin-top: 40px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 20px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.contract-label { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
-.contract-addr { font-size: 12px; color: var(--cyan); word-break: break-all; }
-.copy-btn {
-  background: rgba(0,82,255,0.12);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
-  padding: 9px 20px;
-  cursor: pointer;
-  transition: background .2s, color .2s;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.copy-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
 .buy-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
 
 /* FOOTER */
@@ -624,8 +597,7 @@ footer {
   .steps-grid { grid-template-columns: repeat(2,1fr); }
   .step-card { padding: 28px 20px; }
 
-  .contract-box { flex-direction: column; align-items: flex-start; }
-  .copy-btn { width: 100%; text-align: center; }
+
 
   .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
   footer { padding: 40px 20px; }
@@ -820,17 +792,9 @@ footer {
     </div>
   </div>
 
-  <div class="contract-box reveal">
-    <div>
-      <div class="contract-label">Official Contract Address — Base Network</div>
-      <div class="contract-addr" id="caddr">0xb34b01D7a05Ec9f779b381E878eD5C27335dBb07</div>
-    </div>
-    <button class="copy-btn" onclick="copyAddr()">Copy Address</button>
-  </div>
-
   <div class="buy-cta">
-    <a href="https://app.uniswap.org/explore/tokens/base/0xb34b01d7a05ec9f779b381e878ed5c27335dbb07?inputCurrency=NATIVE" target="_blank" class="btn-primary">🔵 Buy on Uniswap</a>
-    <a href="https://dexscreener.com/base/0x6a7161b2e2fe71d2fb4dc81c566a9d3b13f3113b0fc2f47a4ff6fafa261a5924" target="_blank" class="btn-ghost">📈 View on Dexscreener</a>
+    <a href="https://app.uniswap.org" target="_blank" class="btn-primary">🔵 Buy on Uniswap</a>
+    <a href="https://dexscreener.com" target="_blank" class="btn-ghost">📈 View on Dexscreener</a>
   </div>
 </section>
 
@@ -856,7 +820,7 @@ footer {
         <li><a href="https://x.com/NexoraBase" target="_blank">Twitter / X</a></li>
         <li><a href="#">Telegram</a></li>
         <li><a href="#">GitHub</a></li>
-        <li><a href="https://dexscreener.com/base/0x6a7161b2e2fe71d2fb4dc81c566a9d3b13f3113b0fc2f47a4ff6fafa261a5924" target="_blank">Dexscreener</a></li>
+        <li><a href="https://dexscreener.com" target="_blank">Dexscreener</a></li>
       </ul>
     </div>
     <div class="footer-nav">
@@ -903,13 +867,7 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// Copy contract
-function copyAddr() {
-  navigator.clipboard.writeText(document.getElementById('caddr').textContent).catch(() => {});
-  const btn = document.querySelector('.copy-btn');
-  btn.textContent = '✅ Copied!';
-  setTimeout(() => btn.textContent = 'Copy Address', 2000);
-}
+
 </script>
 </body>
 </html>

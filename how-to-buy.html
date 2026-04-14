@@ -65,12 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .warning-box p{font-size:11px;line-height:1.8;color:var(--muted)}
 .warning-box p strong{color:var(--red)}
 
-/* CONTRACT BOX */
-.contract-box{background:var(--surface);border:1px solid var(--border);padding:24px 28px;margin:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.contract-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
-.contract-addr{font-size:13px;color:var(--cyan);word-break:break-all;font-family:'IBM Plex Mono',monospace}
-.copy-btn{background:rgba(0,82,255,0.12);border:1px solid var(--border);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;padding:10px 22px;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap;flex-shrink:0}
-.copy-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
 
 /* CTA */
 .buy-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
@@ -109,8 +104,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   .step-header{flex-direction:column;gap:8px;padding:24px 20px 0}
   .step-num{font-size:48px}
   .step-body{padding:0 20px 28px;padding-left:20px}
-  .contract-box{flex-direction:column;align-items:flex-start}
-  .copy-btn{width:100%;text-align:center}
+
   .buy-cta{flex-direction:column}
   .btn-primary,.btn-ghost{width:100%;justify-content:center;clip-path:none}
   .tool-footer{padding:32px 20px}
@@ -139,7 +133,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   <!-- WARNING -->
   <div class="warning-box fade-in-d3">
     <div class="icon">⚠️</div>
-    <p><strong>Important:</strong> Always verify the official contract address before swapping. Never trust links from unofficial sources. The only official $NXR contract address is listed below. Always do your own research (DYOR) before investing in any cryptocurrency.</p>
+    <p><strong>Important:</strong> Always do your own research (DYOR) before investing in any cryptocurrency. Never trust links from unofficial sources.</p>
   </div>
 
   <!-- STEP 1 -->
@@ -219,11 +213,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
         <li><span class="sub-step-num">a</span>Go to <strong>app.uniswap.org</strong> and connect your wallet</li>
         <li><span class="sub-step-num">b</span>Make sure you're on <strong>Base Network</strong> (check the network selector in the top right)</li>
         <li><span class="sub-step-num">c</span>Set the "From" token to <strong>ETH</strong> and the "To" token to <strong>$NXR</strong></li>
-        <li><span class="sub-step-num">d</span>Paste the official $NXR contract address (below) to import the token</li>
+        <li><span class="sub-step-num">d</span>Search for <strong>$NXR</strong> or import the token to swap</li>
         <li><span class="sub-step-num">e</span>Enter the amount of ETH you want to swap, review the details, and click <strong>"Swap"</strong></li>
         <li><span class="sub-step-num">f</span>Confirm the transaction in your wallet — done! 🎉</li>
       </ul>
-      <a href="https://app.uniswap.org/explore/tokens/base/0xb34b01d7a05ec9f779b381e878ed5c27335dbb07?inputCurrency=NATIVE" target="_blank" class="link-card">
+      <a href="https://app.uniswap.org" target="_blank" class="link-card">
         <div class="link-icon">🦄</div>
         <div class="link-info">
           <div class="link-name">Open Uniswap</div>
@@ -247,26 +241,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
       <p>After the swap is complete, you'll have $NXR tokens in your wallet. To see them in your wallet interface:</p>
       <ul class="sub-steps">
         <li><span class="sub-step-num">a</span>In MetaMask, scroll down and click <strong>"Import Tokens"</strong></li>
-        <li><span class="sub-step-num">b</span>Paste the $NXR contract address and the token should auto-fill (Name: Nexora, Symbol: NXR, Decimals: 18)</li>
+        <li><span class="sub-step-num">b</span>Search for <strong>$NXR</strong> — the token should auto-fill (Name: Nexora, Symbol: NXR, Decimals: 18)</li>
         <li><span class="sub-step-num">c</span>Click <strong>"Add Custom Token"</strong> and confirm — your $NXR balance will now be visible!</li>
       </ul>
       <p>🎉 <strong>Congratulations!</strong> You now hold $NXR. Start exploring the <a href="gas-tracker.html" style="color:var(--cyan)">Nexora tools</a> and join our community!</p>
     </div>
   </div>
 
-  <!-- CONTRACT ADDRESS -->
-  <div class="contract-box">
-    <div>
-      <div class="contract-label">Official Contract Address — Base Network</div>
-      <div class="contract-addr" id="caddr">0xb34b01D7a05Ec9f779b381E878eD5C27335dBb07</div>
-    </div>
-    <button class="copy-btn" onclick="copyAddr()">Copy Address</button>
-  </div>
-
   <!-- CTA -->
   <div class="buy-cta">
-    <a href="https://app.uniswap.org/explore/tokens/base/0xb34b01d7a05ec9f779b381e878ed5c27335dbb07?inputCurrency=NATIVE" target="_blank" class="btn-primary">🔵 Buy on Uniswap</a>
-    <a href="https://dexscreener.com/base/0x6a7161b2e2fe71d2fb4dc81c566a9d3b13f3113b0fc2f47a4ff6fafa261a5924" target="_blank" class="btn-ghost">📈 View on Dexscreener</a>
+    <a href="https://app.uniswap.org" target="_blank" class="btn-primary">🔵 Buy on Uniswap</a>
+    <a href="https://dexscreener.com" target="_blank" class="btn-ghost">📈 View on Dexscreener</a>
   </div>
 
   <!-- FAQ -->
@@ -304,13 +289,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   <p>© 2025 Nexora. This guide is for educational purposes only. Always DYOR.</p>
 </div>
 
-<script>
-function copyAddr() {
-  navigator.clipboard.writeText(document.getElementById('caddr').textContent).catch(() => {});
-  const btn = document.querySelector('.copy-btn');
-  btn.textContent = '✅ Copied!';
-  setTimeout(() => btn.textContent = 'Copy Address', 2000);
-}
-</script>
+
 </body>
 </html>
